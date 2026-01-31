@@ -52,6 +52,16 @@ https://yourcompany.sharepoint.com/:u:/s/public/file2.zip?download=1
 https://yourcompany.sharepoint.com/:u:/s/public/test.zip?download=1
 ```
 
+## One-liner alternative
+
+If you just need to download a single file without any extras, PowerShell can do it in one line:
+
+```powershell
+Invoke-WebRequest -Uri "https://yourcompany.sharepoint.com/:u:/s/public/yourfile.zip?download=1" -OutFile "C:\temp\yourfile.zip"
+```
+
+Note that you need to know the filename in advance — there is no automatic detection.
+
 ## How it works
 
 The script detects the original filename from the server's `Content-Disposition` response header. It supports all three standard formats (`filename*=UTF-8''...`, `filename="..."`, and `filename=...`). If no filename can be detected, the file is saved as `download.bin`.
